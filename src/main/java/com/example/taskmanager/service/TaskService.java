@@ -18,7 +18,14 @@ public class TaskService {
         return taskRepository.save(task);
     }
 
-    public List<Task> getAllTasks() {
+//    public List<Task> getAllTasks() {
+//        return taskRepository.findAll();
+//    }
+
+    public List<Task> getAllTasks(String status) {
+        if (status != null && !status.isEmpty()) {
+            return taskRepository.findByStatus(status);
+        }
         return taskRepository.findAll();
     }
 
@@ -30,7 +37,9 @@ public class TaskService {
         return taskRepository.save(task);
     }
 
-    public void deleteTask(Long id) {
+    public Long deleteTask(Long id) {
+        taskRepository.findById(id).orElseThrow(() -> new RuntimeException("Task not found"));
         taskRepository.deleteById(id);
+        return id;
     }
 }
