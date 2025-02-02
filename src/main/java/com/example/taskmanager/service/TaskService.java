@@ -18,9 +18,6 @@ public class TaskService {
         return taskRepository.save(task);
     }
 
-//    public List<Task> getAllTasks() {
-//        return taskRepository.findAll();
-//    }
 
     public List<Task> getAllTasks(String status) {
         if (status != null && !status.isEmpty()) {
